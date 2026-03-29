@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import notFoundImage from '../assets/404.svg';
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import notFoundImage from "../assets/404.svg";
 
 const NotFound = () => {
   return (

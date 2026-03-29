@@ -175,7 +175,9 @@ function Home() {
                   <TooltipTrigger asChild>
                     <Button variant="ghost">Hover for tooltip</Button>
                   </TooltipTrigger>
-                  <TooltipContent>Helpful contextual information.</TooltipContent>
+                  <TooltipContent>
+                    Helpful contextual information.
+                  </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
             </CardContent>
@@ -190,13 +192,19 @@ function Home() {
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="tokens">Tokens</TabsTrigger>
             </TabsList>
-            <TabsContent value="overview" className="mt-4 text-sm text-muted-foreground">
+            <TabsContent
+              value="overview"
+              className="mt-4 text-sm text-muted-foreground"
+            >
               This page is intentionally simple: it gives you ready-to-test UI
               primitives without locking you into a full app design.
             </TabsContent>
-            <TabsContent value="tokens" className="mt-4 text-sm text-muted-foreground">
-              Colors and spacing are driven by design tokens already configured in
-              the Tailwind and CSS variable setup.
+            <TabsContent
+              value="tokens"
+              className="mt-4 text-sm text-muted-foreground"
+            >
+              Colors and spacing are driven by design tokens already configured
+              in the Tailwind and CSS variable setup.
             </TabsContent>
           </Tabs>
         </section>
