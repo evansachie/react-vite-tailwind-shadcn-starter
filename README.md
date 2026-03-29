@@ -91,3 +91,47 @@ When adding new UI, prefer token-based classes such as:
 - `border-border`
 
 This keeps components consistent across light and dark themes.
+
+## Env and API Layer
+
+This template includes a typed env + API foundation for dashboard-style apps.
+
+### Environment variables
+
+1. Copy `.env.example` to `.env`
+2. Set your backend URL
+
+Required vars:
+
+- `VITE_API_BASE_URL`
+
+Validation is handled in `src/lib/env.ts` using Zod. The app throws early if values are invalid.
+
+### API client and interceptors
+
+Use the shared axios client from:
+
+- `src/lib/api/client.ts`
+
+Interceptors live in:
+
+- `src/lib/api/interceptors/request-interceptor.ts`
+- `src/lib/api/interceptors/response-interceptor.ts`
+
+Example usage:
+
+```ts
+import { apiClient } from "@/lib/api/client";
+
+const { data } = await apiClient.get("/users");
+```
+
+## Error handling and status UI
+
+- Global render error fallback: `ErrorBoundary` in `src/components/error-boundary.tsx`, wrapped around the app in `src/main.tsx`.
+- Reusable data-fetching states (import each file directly), for example:
+  - `@/components/common/loading-state`
+  - `@/components/common/error-state`
+  - `@/components/common/empty-state`
+
+Use these inside pages or feature sections instead of one-off markup for loading, failures, and empty lists.
