@@ -1,54 +1,93 @@
-# React + TypeScript + Vite
+# React + Vite + Tailwind + shadcn/ui Starter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React + TypeScript starter template with:
 
-Currently, two official plugins are available:
+- Vite for dev/build
+- Tailwind CSS with token-based theming
+- shadcn/ui component setup
+- React Router baseline routing
+- `next-themes` for light/dark/system mode
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup
 
-## Expanding the ESLint configuration
+### 1) Install dependencies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2) Start development server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+pnpm dev
 ```
+
+### 3) Build and preview
+
+```bash
+pnpm build
+pnpm preview
+```
+
+### 4) Lint
+
+```bash
+pnpm lint
+```
+
+## Add shadcn Components
+
+This template is set up with `components.json`, aliasing, and Tailwind config for shadcn.
+
+Add a single component:
+
+```bash
+pnpm dlx shadcn@latest add button
+```
+
+Add multiple components:
+
+```bash
+pnpm dlx shadcn@latest add button input card dialog
+```
+
+Generated components are placed in `src/components/ui`.
+
+## Folder Conventions
+
+Use this structure as your default organization:
+
+- `src/components/ui` - generated shadcn primitives
+- `src/components` - app-level reusable components
+- `src/pages` - route-level page components
+- `src/layout` - app shell, navigation, route wrappers
+- `src/contexts` - global providers and context modules
+- `src/hooks` - reusable custom hooks
+- `src/lib` - utilities and shared helpers
+- `src/assets` - static images and icons
+
+Current routing entry points:
+
+- `src/main.tsx` - app bootstrap and global providers
+- `src/App.tsx` - router and route mapping
+
+## Theming Approach
+
+The project uses class-based dark mode and CSS variables.
+
+- Tailwind dark mode is configured with `darkMode: ["class"]`.
+- Theme tokens are defined in `src/index.css` under `:root` and `.dark`.
+- `ThemeProvider` wraps the app in `src/main.tsx`.
+- `ThemeToggle` in `src/components/theme-toggle.tsx` switches between:
+  - `light`
+  - `dark`
+  - `system`
+
+When adding new UI, prefer token-based classes such as:
+
+- `bg-background`
+- `text-foreground`
+- `text-muted-foreground`
+- `border-border`
+
+This keeps components consistent across light and dark themes.
