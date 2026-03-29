@@ -51,19 +51,28 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { useTheme } from "next-themes";
 
 function Home() {
+  const { theme = "system", setTheme } = useTheme();
+
   return (
     <main className="min-h-screen bg-background text-foreground p-6 md:p-10">
       <div className="mx-auto max-w-6xl space-y-8">
         <header className="space-y-3">
-          <Badge variant="secondary">UI Playground</Badge>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            shadcn/ui starter surface
-          </h1>
-          <p className="text-muted-foreground max-w-2xl">
-            A quick visual sandbox for the base components in this template.
-          </p>
+          <div className="flex items-start justify-between gap-4">
+            <div className="space-y-3">
+              <Badge variant="secondary">UI Playground</Badge>
+              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+                shadcn/ui starter surface
+              </h1>
+              <p className="text-muted-foreground max-w-2xl">
+                A quick visual sandbox for the base components in this template.
+              </p>
+            </div>
+            <ThemeToggle />
+          </div>
         </header>
 
         <section className="grid gap-6 md:grid-cols-2">
@@ -88,7 +97,7 @@ function Home() {
               </div>
               <div className="grid gap-2">
                 <Label>Theme</Label>
-                <Select defaultValue="system">
+                <Select value={theme} onValueChange={setTheme}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select theme" />
                   </SelectTrigger>
