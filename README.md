@@ -121,7 +121,17 @@ Interceptors live in:
 Example usage:
 
 ```ts
-import { apiClient } from "@/lib/api";
+import { apiClient } from "@/lib/api/client";
 
 const { data } = await apiClient.get("/users");
 ```
+
+## Error handling and status UI
+
+- Global render error fallback: `ErrorBoundary` in `src/components/error-boundary.tsx`, wrapped around the app in `src/main.tsx`.
+- Reusable data-fetching states (import each file directly), for example:
+  - `@/components/common/loading-state`
+  - `@/components/common/error-state`
+  - `@/components/common/empty-state`
+
+Use these inside pages or feature sections instead of one-off markup for loading, failures, and empty lists.
