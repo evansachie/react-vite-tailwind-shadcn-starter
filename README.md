@@ -91,3 +91,37 @@ When adding new UI, prefer token-based classes such as:
 - `border-border`
 
 This keeps components consistent across light and dark themes.
+
+## Env and API Layer
+
+This template includes a typed env + API foundation for dashboard-style apps.
+
+### Environment variables
+
+1. Copy `.env.example` to `.env`
+2. Set your backend URL
+
+Required vars:
+
+- `VITE_API_BASE_URL`
+
+Validation is handled in `src/lib/env.ts` using Zod. The app throws early if values are invalid.
+
+### API client and interceptors
+
+Use the shared axios client from:
+
+- `src/lib/api/client.ts`
+
+Interceptors live in:
+
+- `src/lib/api/interceptors/request-interceptor.ts`
+- `src/lib/api/interceptors/response-interceptor.ts`
+
+Example usage:
+
+```ts
+import { apiClient } from "@/lib/api";
+
+const { data } = await apiClient.get("/users");
+```
